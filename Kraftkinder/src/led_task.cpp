@@ -1,6 +1,8 @@
 #include "led_task.h"
 
 void LedStripTask::start() {
+  Serial.println("Starting");
+
   setIterations(-1);
   enable();
 }
@@ -14,6 +16,7 @@ void LedStripTask::nextState() {
 }
 
 bool LedStripTask::Callback() {
+  Serial.println("Exeecuting LedStripTask Callback");
   int k = iterationCounter_;
   switch (state_) {
     case 0:

@@ -24,6 +24,7 @@ LedStripTask ledStripTask(scheduler, numled, drawingMemory, displayMemory,
                           buttonAPin, brightnessPotiPin);
 
 void setup() {
+  Serial.begin(115200);
   // This is Teensy 4.1 specific
   pinMode(32, OUTPUT);
   digitalWrite(32, HIGH);

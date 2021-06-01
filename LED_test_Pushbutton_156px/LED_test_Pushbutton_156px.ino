@@ -42,6 +42,7 @@ void setup() {
   // Defining the in- an outputs
   pinMode(A17, INPUT);
   pinMode(A15, INPUT);
+  pinMode(A14, INPUT);
 }
 
 
@@ -78,11 +79,20 @@ void loop() {
           uint8_t blue = animationData_ramp_r[3 * i + (k * leds.numPixels() * 3) + 2];
           leds.setPixel(i, leds.Color(red, green, blue));
         }
+        //Brightness Poti
         int poti = analogRead(A17);
         int bright_poti = poti / 4;
         leds.setBrightness(bright_poti);
+
         leds.show();
-        delay(15); // 33 ms delay, 1/0.033 sind ungefähr 30 fps
+
+        //Framerate Poti
+        int bluepoti = analogRead(A14);
+        int value = map(bluepoti, 0, 1023, 0, 100);
+        delay(value);
+
+
+        // delay(30); // 33 ms delay, 1/0.033 sind ungefähr 30 fps
       }
       break;
     case 2:
@@ -93,26 +103,45 @@ void loop() {
           uint8_t blue = animationData_ramp_g[3 * i + (k * leds.numPixels() * 3) + 2];
           leds.setPixel(i, leds.Color(red, green, blue));
         }
+        //Brightness Poti
         int poti = analogRead(A17);
         int bright_poti = poti / 4;
         leds.setBrightness(bright_poti);
+
         leds.show();
-        delay(15); // 33 ms delay, 1/0.033 sind ungefähr 30 fps
+
+        //Framerate Poti
+        int bluepoti = analogRead(A14);
+        int value = map(bluepoti, 0, 1023, 0, 100);
+        delay(value);
       }
       break;
     default:
-         for (int k = 0; k < animationSize_ramp_b / (3 * leds.numPixels()); k++) {
+      for (int k = 0; k < animationSize_ramp_b / (3 * leds.numPixels()); k++) {
         for (int i = 0; i < leds.numPixels() - 1; i++) {
           uint8_t red = animationData_ramp_b[3 * i + (k * leds.numPixels() * 3) + 0];
           uint8_t green = animationData_ramp_b[3 * i + (k * leds.numPixels() * 3) + 1];
           uint8_t blue = animationData_ramp_b[3 * i + (k * leds.numPixels() * 3) + 2];
           leds.setPixel(i, leds.Color(red, green, blue));
         }
+
+        
+        //Brightness Poti
         int poti = analogRead(A17);
         int bright_poti = poti / 4;
         leds.setBrightness(bright_poti);
+
         leds.show();
-        delay(15); // 33 ms delay, 1/0.033 sind ungefähr 30 fps
+
+        //Framerate Poti
+        int bluepoti = analogRead(A14);
+        int value = map(bluepoti, 0, 1023, 0, 100);
+        delay(value);
+
+        // delay(30); // 33 ms delay, 1/0.033 sind ungefähr 30 fps
+
+
+
       }
       btnCounter = 0;
   }
